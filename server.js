@@ -14,7 +14,7 @@ var storage = multer.diskStorage({
         callback(null, './uploads');
     },
     filename: function(request, file, callback) {
-        callback(null, file.fieldname + '-' + Date.now());
+        callback(null, file.fieldname + '-' + Date.now() + '.jpg');
     }
 });
 
@@ -28,15 +28,14 @@ app.get('/', function(request, response){
     response.sendFile(__dirname + '/public/index.html');
 });
 
+/* POST */
 app.post('/api/photo', function(request, response){
-
-    console.log();
-
     upload(request, response, function(error){
         if(error) {
             return response.end("error uploading file!");
         }
-        response.end("File is uploaded");
+        response.type('text/html');
+        response.end('File is uploaded. ' + '<a href="../index.html">Upload more!</a>');
     });
 });
 
@@ -47,3 +46,4 @@ app.listen(3000, function(){
 
 //TODO get file name, and append to uploaded file.
 //TODO strip exif data
+//TODO check for file size before uploading. If it's 0kb, say try again.

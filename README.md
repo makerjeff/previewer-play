@@ -7,10 +7,12 @@ RnD for Helena's previewer
 - [Using Multer requires middleware function error fix](http://stackoverflow.com/questions/31496100/cannot-app-usemulter-requires-middleware-function-error)
 - [File Upload using Node / Express / Multer](http://code.runnable.com/VNX-T8fdt5Y4X-mv/fileupload-for-node-js-and-hello-world) **(NEW!)** **(WORKS!)**
 - [MDN: Date.now() (Epoch time)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) **(NEW!)**
+- [Multer: NPM](https://github.com/expressjs/multer/issues/203) **(IMPORTANT!)**
+- [Vivus.JS](https://github.com/maxwellito/vivus)
 
 ## Notes
 
-- File UPload using node/express/multer tutorial works.
+- File Upload using node/express/multer tutorial works.
 
 
 **Using Multer:<br>

@@ -11,6 +11,39 @@
     <input type="file" name="userPhoto">
     <input type="submit" value="Upload Image" name="submit">
 </form>
+<progress min="0" max="100" value="0">0% complete</progress>
+
+<script>
+
+    /**
+     * Send Form
+     * @param form
+     * @returns {boolean}
+     */
+    function sendForm(form){
+        var formData = new FormData();
+
+        formData.append('secret_token', '1234567890');  //append extra data before sending.
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function(event){
+            //do something
+        };
+
+        xhr.send(formData);
+
+        return false;
+    }
+
+    function uploadFiles(url, files){
+        var formData = new FormData();
+
+        for(var i = 0, file; file = files[i]; i++) {
+
+        }
+    }
+</script>
 
 </body>
 </html>
