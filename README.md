@@ -8,7 +8,16 @@ RnD for Helena's previewer
 - [File Upload using Node / Express / Multer](http://code.runnable.com/VNX-T8fdt5Y4X-mv/fileupload-for-node-js-and-hello-world) **(NEW!)** **(WORKS!)**
 - [MDN: Date.now() (Epoch time)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) **(NEW!)**
 - [Multer: NPM](https://github.com/expressjs/multer/issues/203) **(IMPORTANT!)**
-- [Vivus.JS](https://github.com/maxwellito/vivus)
+- [Vivus.JS](https://github.com/maxwellito/vivus) **(NEW!)**
+- [HTML5 Progress bar](http://www.matlus.com/html5-file-upload-with-progress/)
+- [HTML5 Rocks: XHR2](http://www.html5rocks.com/en/tutorials/file/xhr2/)
+
+### Reference
+- [Express JS - Middleware (book) (Has all the methods!)](https://ewiggin.gitbooks.io/expressjs-middleware/content/multer.html)
+- [Multer - Github](https://github.com/expressjs/multer)
+- [FormData-MDN](https://developer.mozilla.org/en-US/docs/Web/API/FormData/append)
+- [Request and Response Objects](http://www.murvinlai.com/req-and-res-in-nodejs.html)
+- [Parsing POST data in Express: Use BodyParser](http://stackoverflow.com/questions/5710358/how-to-retrieve-post-query-parameters-in-express)
 
 ## Notes
 
