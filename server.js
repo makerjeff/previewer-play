@@ -8,6 +8,7 @@ var multer = require('multer');
 var colors = require('colors');
 var fileType = require('file-type');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 /*GLOBALS*/
 var done = false;
@@ -61,10 +62,21 @@ app.get('/', function(request, response){
 // FORM DATA SUBMISSION TEST (to debug file upload)
 app.post('/api/text', function(request, response){
 
-    response.type('text/html');
-    response.end('<h1>Server response: </h1>' + request.body.firstname + '<br>' + request.body.lastname);
+    var contentString = '';
 
-    console.log('User submitted stuff: ' + request.body.firstname + ', ' + request.body.lastname);
+    contentString += '<h1>Server response: </h1>';
+    contentString += request.body.firstname;
+    contentString += ', ';
+    contentString += request.body.lastname;
+    contentString += '<br> Pin: ';
+    contentString += request.body.pin;
+
+    response.type('text/html');
+    response.end(contentString + '<br>' + '<a href="/simpleform.html">submit again?</a>');
+
+    console.log('content:'.yellow + contentString);
+
+    logToFile(contentString);
 
 });
 
@@ -80,7 +92,6 @@ app.post('/api/photo', function(request, response){
 
         response.type('text/html');
         response.end('File is uploaded. ' + '<a href="/">Upload more!</a>');
-
         console.log(request.body);
         console.log('file uploaded.');
     });
@@ -100,3 +111,21 @@ app.listen(3000, function(){
 //TODO create folderArray of existing folders
 //TODO create random string folder, if folder exists in folderArray, try again.
 //TODO auto-unzip
+
+
+// ===== HELPER =====
+function logToFile(textString){
+
+    var logObject = {};
+
+    logObject.timestamp = Date.now() ;
+    logObject.content =  ': ' + '"' + textString + '"\n';
+
+    var contentString = Date.now() + ': ' + textString + '\n';
+
+    fs.appendFile('server-log.txt', logObject.timestamp + logObject.content, function(error){
+        if(error) {
+            return console.log(Error(error));
+        }
+    });
+}

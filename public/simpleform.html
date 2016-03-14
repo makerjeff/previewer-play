@@ -3,20 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Form</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <script src="./lib/random_string_gen.js"></script>
+
+    <style>
+        * {
+            font-family: "Montserrat", sans-serif;
+
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        iframe {
+            box-sizing: border-box;
+            border: 0;
+            overflow: hidden;
+        }
+
+        .textField {
+            padding: 10px;
+            margin: 5px 0px;
+
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #container {
+            margin: 10px;
+        }
+
+        #inject-here {
+            position: absolute;
+            right: 100px;
+            top: 100px;
+        }
+
+        #pin-id {
+            margin-bottom: 10px;
+        }
+
+    </style>
 </head>
 <body>
-<h1>Simple Form</h1>
 
-<form id="myForm" method="post" action="/api/text" enctype="application/x-www-form-urlencoded">
-    <input id="firstname-id" type="text" name="firstname" placeholder="first name" autofocus autocomplete="off"> <br>
-    <input id=lastname-id" type="text" name="lastname"  placeholder="fieldTwo" autocomplete="off"> <br>
-    <input id="submitButton" type="submit" name="submit" value="submitValue">
-</form>
+<div id="container">
 
-<button id="testButton">testButton</button>
+    <h1>Simple Form</h1>
+
+    <form id="myForm" method="post" action="/api/text" enctype="application/x-www-form-urlencoded">
+        <input id="firstname-id" class="textField" type="text" name="firstname" size="35" placeholder="first name" autofocus autocomplete="off" required> <br>
+        <input id=lastname-id" class="textField" type="text" name="lastname" size="35" placeholder="last name" autocomplete="off" required> <br>
+        <input id="pin-id" class="textField" type="password" name="pin" size="5" maxlength= "5" placeholder="pin" autocomplete="off" required> <br>
+        <input id="submitButton" type="submit" name="submit" value="submitValue">
+    </form>
+</div>
+
+<div id="inject-here">
+    <iframe src="./creative/1mDs78QbfW/myframe.html" width="305" height="255" sandbox="allow-same-origin allow-scripts allow-popups" ></iframe>
+</div>
+
+
 
 <script>
+    //TODO this form POSTS via HTML, now to make this AJAX
 
+    //TODO programatically inject iframe with defined route (socket? or XHR?)
 
 </script>
 </body>
