@@ -19,6 +19,7 @@ RnD for Helena's previewer
 - [Request and Response Objects](http://www.murvinlai.com/req-and-res-in-nodejs.html)
 - [Parsing POST data in Express: Use BodyParser](http://stackoverflow.com/questions/5710358/how-to-retrieve-post-query-parameters-in-express)
 - [HTML Goodies: Drag and Drop files](http://www.htmlgoodies.com/html5/javascript/drag-files-into-the-browser-from-the-desktop-HTML5.html#fbid=uZVFQQwBxeJ)
+- [Mongoose Quick Start](http://mongoosejs.com/docs/)
 
 ## Notes
 

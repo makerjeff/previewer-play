@@ -14,6 +14,8 @@
 
             width: 100%;
             height: 100%;
+
+            font-size: 16px;
         }
 
         #container {
@@ -22,6 +24,8 @@
             width: 300px;
             height: 250px;
             border: 1px solid black;
+
+            overflow: hidden;
         }
 
         #myBox {
@@ -30,21 +34,67 @@
             height: 100%;
             justify-content: center;
             align-items: center;
-            background: rgba(230,230,230, 1.0);
+            background: rgba(20,20,20, 1);
         }
 
         #cta {
             display: flex;
-            color: black;
+            color: white;
+
+            font-family: "Courier New", serif;
+
+            z-index: 10;
+
+            text-shadow: 3px 3px 3px rgba(20,20,20,1.0);
 
             transition: color 0.5s;
 
-            font-family: "Courier New", serif;
         }
 
         #cta:hover {
             color: red;
             cursor: pointer;
+        }
+
+        .Img {
+            position: absolute;
+            background: url('nerf_christmas.jpg') no-repeat 0px 0px;
+        }
+
+        #background {
+
+            /* define sprite dimensions*/
+            width: 1000px;
+            height: 563px;
+
+            /* move background image to zero out */
+            background-position: -100px -220px;
+            background-size: 90%;
+
+            /* position sprite */
+            top: 0px;
+            left: 0px;
+
+            z-index: 0;
+        }
+
+        #legal {
+            position: absolute;
+            font-size: 0.75em;
+            color: white;
+
+            top: 10px;
+            right: 10px;
+
+            z-index: 100;
+
+            transition: top 0.5s, right 0.5s, font-size 0.5s;
+        }
+
+        #legal:hover {
+            font-size: 1em;
+            top: 8px;
+            right: 5px;
         }
 
 
@@ -56,9 +106,12 @@
 
     <div id="myBox" onclick="window.open('http://www.wuyangclan.com/debug/')">
 
+        <div id="legal">legal</div>
         <div id="cta">
             <h1 class="blackColor">banner cta</h1>
         </div>
+
+        <div id="background" class="Img"></div>
 
     </div>
 
