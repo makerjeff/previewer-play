@@ -102,6 +102,16 @@
 
 <script>
     //TODO this form POSTS via HTML, now to make this AJAX
+    var myForm = document.getElementById('myForm');
+
+    //XHR version
+    myForm.addEventListener('click', function(event){
+        event.preventDefault();
+        console.log('default prevented. ' + this.enctype);
+
+        sendForm(myForm);
+
+    });
 
     //TODO programatically inject iframe with defined route (socket? or XHR?)
 
@@ -143,6 +153,26 @@
         myFrame.classList.add('iframer');
 
         injectDiv.appendChild(myFrame);
+
+    }
+
+    function sendForm(form){
+        var formData = new FormData();
+        //append form data with formData.append(<key:string>, <value:value>);
+
+        formData.append('firstname',document.getElementById('firstname-id'));
+        formData.append('lastname', document.getElementById('lastname-id'));
+        formData.append('pin','12345');
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST','/api/text', true);
+        xhr.onload = function (event){
+            //do something
+            console.log(formData);
+        };
+
+        xhr.send(formData);
+
 
     }
 

@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>YayPage</title>
+    <title>Upload</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            font-family: Montserrat, sans-serif;
+        }
+        html, body {
+            height: 85%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <h1>Upload</h1>
 
 <form id="uploadForm" action="/api/photo" enctype="multipart/form-data" method="post">
     <!--name: this value needs to be the same as in multer().single(<name>);-->
-    <input id="myFile" type="file" name="userPhoto" multiple>
+    <!--add 'multiple' to upload multiple files-->
+    <input id="myFile" type="file" name="userPhoto">
     <input type="submit" value="Upload Image" name="submit">
 </form>
 <progress min="0" max="100" value="0">0% complete</progress>

@@ -21,6 +21,10 @@ RnD for Helena's previewer
 - [HTML Goodies: Drag and Drop files](http://www.htmlgoodies.com/html5/javascript/drag-files-into-the-browser-from-the-desktop-HTML5.html#fbid=uZVFQQwBxeJ)
 - [Mongoose Quick Start](http://mongoosejs.com/docs/)
 
+### Technologies
+- [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
+- [Multer: File upload]
+
 ## Notes
 
 - File Upload using node/express/multer tutorial works.
