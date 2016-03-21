@@ -20,6 +20,8 @@ RnD for Helena's previewer
 - [Parsing POST data in Express: Use BodyParser](http://stackoverflow.com/questions/5710358/how-to-retrieve-post-query-parameters-in-express)
 - [HTML Goodies: Drag and Drop files](http://www.htmlgoodies.com/html5/javascript/drag-files-into-the-browser-from-the-desktop-HTML5.html#fbid=uZVFQQwBxeJ)
 - [Mongoose Quick Start](http://mongoosejs.com/docs/)
+- [Form EncType](http://www.w3schools.com/jsref/prop_form_enctype.asp)
+- [Body-Parser for Express](https://github.com/expressjs/body-parser)
 
 ### Technologies
 - [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
