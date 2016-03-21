@@ -31,6 +31,8 @@ RnD for Helena's previewer
 
 - File Upload using node/express/multer tutorial works.
 
+- **FormData() from the front end sends data as 'multipart/form-data', which bodyParser doesn't support. Use 'multer' for this.**
+
 
 **Using Multer:<br>
 app.use(multer({dest:'./uploads/'}).single(...)); <br>

@@ -88,7 +88,7 @@ app.post('/api/formSubmit', function(request, response){
 
     var contentString = '';
 
-    //TODO figure out why this isn't passing through
+    //NOTES
 
     contentString += '<h1>Server response: </h1>';
     contentString += request.body.firstname;

@@ -105,7 +105,6 @@
 
 
 <script>
-    //TODO this form POSTS via HTML, now to make this AJAX
     var myForm = document.getElementById('myForm');
 
     //XHR version
@@ -132,11 +131,6 @@
     };
 
     injectAdBanner('inject-here', dataObject);
-
-    //TODO: MAKE IT INTO FOREACH
-
-
-
 
     //CUSTOM FUNCTIONS
 
@@ -192,7 +186,8 @@
 
         //check before new form data
         for( var i = 0; i < form.elements.length; i++){
-            console.log(form.elements[i].value);
+            console.log(form.elements[i].name + ': ' + form.elements[i].value);
+
         }
 
         var formData = new FormData(form);
