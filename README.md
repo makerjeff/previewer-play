@@ -35,6 +35,7 @@ RnD for Helena's previewer
 
 - **form.elements[0].value**; Access your form element values on the front end with this. (AJAX)
 - **form.( variable name ).value**; Also works as well.
+- ENCODE your URIs before posting!
 
 
 **Using Multer:<br>

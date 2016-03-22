@@ -159,7 +159,7 @@ app.listen(3000, function(){
 //TODO auto-unzip
 
 
-// ===== HELPER =====
+// ===== HELPER FUNCTIONS =====
 function logToFile(textString){
 
     var logObject = {};
