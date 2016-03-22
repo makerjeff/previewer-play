@@ -211,24 +211,35 @@
 
     function sendFormJSON(form){
         var formObject = {};
-        var formObjectString;
+        var formObjectString = '';
 
-        formObject.firstname = form.firstname.value;
-        formObject.lastname = form.lastname.value;
-        formObject.pin = form.pin.value;
+//        formObject.firstname = form.firstname.value;
+//        formObject.lastname = form.lastname.value;
+//        formObject.pin = form.pin.value;
+
 
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'api/json', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
 
         xhr.onload = function (event){
             //do something
             var resultDiv = document.getElementById('resultDiv');
+
             resultDiv.innerHTML = xhr.responseText;
             console.log(xhr.responseText);
         };
 
-        formObjectString = JSON.stringify(formObject);
+        formObjectString += 'firstname=';
+        formObjectString += form.firstname.value;
+        formObjectString += '&lastname=';
+        formObjectString += form.lastname.value;
+        formObjectString += '&pin=';
+        formObjectString =+ form.pin.value;
 
+
+        //xhr.send('firstname=Jeffurson&lastname=Wooo&pin=34342');
         xhr.send(formObjectString);
 
     }

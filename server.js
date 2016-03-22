@@ -36,9 +36,7 @@ var upload = multer({storage: storage}).single('userPhoto');
 app.use(express.static(__dirname + "/public/"));
 
 //enable bodyParser
-app.use(bodyParser.json({
-    type:'application/*+json'
-}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
      extended: true
  }));
@@ -88,16 +86,28 @@ app.post('/api/text', function(request, response){
 // FORM DATA SUBMISSION TEST2 (to debug file upload)
 app.post('/api/json', function(request, response){
 
+    var anObject = {};
+    var aString = '';
+    var bString = '';
+
+    anObject.firstname = 'jeff';
+    anObject.lastname = 'wu';
+    anObject.pin = '12345';
+
+    aString = JSON.stringify(anObject);
+
+    bString = request.body.firstname + ' ' + request.body.lastname + ' pin: ' + request.body.pin;
+
+
+
     response.type('text/html');
-    response.header("Content-Type", "application/json");
-    //response.end(contentString + '<br>' + '<a href="/simpleform.html">submit again?</a>');
-    response.end('something something');
+    response.end(bString);
 
     //console.log('content:'.yellow + contentString);
 
-    console.dir(request.body.firstname);
+    console.dir(bString);
 
-    //logToFile(request.body);
+    logToFile(bString);
 
 });
 
