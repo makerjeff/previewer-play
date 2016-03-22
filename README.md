@@ -27,7 +27,7 @@ RnD for Helena's previewer
 - [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
 - [Multer: File upload]
 
-## Notes
+## Notes/Major Discoveries
 
 - File Upload using node/express/multer tutorial works.
 
