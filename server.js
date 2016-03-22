@@ -27,16 +27,19 @@ var storage = multer.diskStorage({
 
 //Multer upload module
 var upload = multer({storage: storage}).single('userPhoto');
+//var jsonParser = bodyParser.json();
+//var urlencodedParser = bodyParser.urlencoded({extended: true });
 
 /* MIDDLEWARE */
 
 //server static files
 app.use(express.static(__dirname + "/public/"));
 
+//enable bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
-}));
+     extended: true
+ }));
 
 //enable CORS
 app.use(function(request, response, next) {
@@ -80,10 +83,48 @@ app.post('/api/text', function(request, response){
 
 });
 
-// API routes (uploading)
+// FORM DATA SUBMISSION TEST2 (to debug file upload)
+app.post('/api/formSubmit', function(request, response){
+
+    var contentString = '';
+
+    //NOTES
+
+    contentString += '<h1>Server response: </h1>';
+    contentString += request.body.firstname;
+    contentString += ', ';
+    contentString += request.body.lastname;
+    contentString += '<br> Pin: ';
+    contentString += request.body.pin;
+
+    response.type('text/html');
+    response.end(contentString + '<br>' + '<a href="/simpleform.html">submit again?</a>');
+
+    console.log('content:'.yellow + contentString);
+
+    logToFile(contentString);
+
+});
+
+
+// FORM DATA SUBMISSION TEST 2
+app.post('/api/text2', function(request, response){
+
+    var contentString = request.body.firstname;
+
+    response.type('text/html');
+    response.end(contentString);
+
+    console.log('content:'.blue + contentString);
+
+    logToFile(contentString);
+
+});
+
+/* API routes (uploading) */
 app.post('/api/photo', function(request, response){
 
-    //multer singleFile upload
+    // multer singleFile upload
     upload(request, response, function(error){
 
         if(error) {
@@ -102,7 +143,7 @@ app.get('*', function(request, response){
     response.sendFile(__dirname + '/public/404.html');
 });
 
-/* START SERVER */
+/* ===== START SERVER ===== */
 app.listen(3000, function(){
     console.log('Working on Port 3000'.blue);
 });
@@ -128,4 +169,20 @@ function logToFile(textString){
             return console.log(Error(error));
         }
     });
+}
+
+/**
+ * Make and ID.
+ * @param chars Number of characters to generate.
+ * @returns {string} Returns a random string of characters based on 'chars'.
+ */
+function createRandomFolder(chars){
+
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < chars; i++ ){
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
 }
