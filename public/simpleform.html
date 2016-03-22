@@ -112,7 +112,9 @@
 
         event.preventDefault();
         console.log('Default prevented. Encoding type: ' + this.enctype);
-        sendForm2(this);
+        //sendForm2(this);
+
+        sendFormJSON(this);
 
     },false);
 
@@ -205,6 +207,30 @@
         };
 
         xhr.send(formData);
+    }
+
+    function sendFormJSON(form){
+        var formObject = {};
+        var formObjectString;
+
+        formObject.firstname = form.firstname.value;
+        formObject.lastname = form.lastname.value;
+        formObject.pin = form.pin.value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'api/json', true);
+
+        xhr.onload = function (event){
+            //do something
+            var resultDiv = document.getElementById('resultDiv');
+            resultDiv.innerHTML = xhr.responseText;
+            console.log(xhr.responseText);
+        };
+
+        formObjectString = JSON.stringify(formObject);
+
+        xhr.send(formObjectString);
+
     }
 
 

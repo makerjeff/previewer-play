@@ -33,6 +33,9 @@ RnD for Helena's previewer
 
 - **FormData() from the front end sends data as 'multipart/form-data', which bodyParser doesn't support. Use 'multer' for this.**
 
+- **form.elements[0].value**; Access your form element values on the front end with this. (AJAX)
+- **form.( variable name ).value**; Also works as well.
+
 
 **Using Multer:<br>
 app.use(multer({dest:'./uploads/'}).single(...)); <br>
