@@ -26,7 +26,7 @@ var storage = multer.diskStorage({
 });
 
 //Multer upload module
-var upload = multer({storage: storage}).single('uploadFile');
+var upload = multer({storage: storage}).single('userPhoto');
 //var jsonParser = bodyParser.json();
 //var urlencodedParser = bodyParser.urlencoded({extended: true });
 
@@ -62,6 +62,26 @@ app.get('/', function(request, response){
     response.sendFile(__dirname + '/public/index.html');
 });
 
+// FORM DATA SUBMISSION TEST (to debug file upload)
+app.post('/api/text', function(request, response){
+
+    var contentString = '';
+
+    contentString += '<h1>Server response: </h1>';
+    contentString += request.body.firstname;
+    contentString += ', ';
+    contentString += request.body.lastname;
+    contentString += '<br> Pin: ';
+    contentString += request.body.pin;
+
+    response.type('text/html');
+    response.end(contentString + '<br>' + '<a href="/simpleform.html">submit again?</a>');
+
+    console.log('content:'.yellow + contentString);
+
+    logToFile(contentString);
+
+});
 
 // FORM DATA SUBMISSION TEST2 (to debug file upload)
 app.post('/api/signup', function(request, response){
@@ -69,6 +89,7 @@ app.post('/api/signup', function(request, response){
     var bString = '';
 
     bString = request.body.firstname + ' ' + request.body.lastname + ' pin: ' + request.body.pin;
+
 
     console.dir(bString);
 
@@ -79,6 +100,20 @@ app.post('/api/signup', function(request, response){
     response.end(bString);
 });
 
+
+// FORM DATA SUBMISSION TEST 2
+app.post('/api/text2', function(request, response){
+
+    var contentString = request.body.firstname;
+
+    response.type('text/html');
+    response.end(contentString);
+
+    console.log('content:'.blue + contentString);
+
+    logToFile(contentString);
+
+});
 
 /* API routes (uploading) */
 app.post('/api/photo', function(request, response){
