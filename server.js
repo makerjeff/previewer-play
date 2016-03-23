@@ -84,32 +84,20 @@ app.post('/api/text', function(request, response){
 });
 
 // FORM DATA SUBMISSION TEST2 (to debug file upload)
-app.post('/api/json', function(request, response){
+app.post('/api/signup', function(request, response){
 
-    var anObject = {};
-    var aString = '';
     var bString = '';
-
-    anObject.firstname = 'jeff';
-    anObject.lastname = 'wu';
-    anObject.pin = '12345';
-
-    aString = JSON.stringify(anObject);
 
     bString = request.body.firstname + ' ' + request.body.lastname + ' pin: ' + request.body.pin;
 
 
+    console.dir(bString);
+
+    //createRandomFolder();
+    logToFile(bString);
 
     response.type('text/html');
     response.end(bString);
-
-    //console.log('content:'.yellow + contentString);
-
-    console.dir(bString);
-
-    createRandomFolder();
-    logToFile(bString);
-
 });
 
 

@@ -81,6 +81,13 @@
             margin: 20px;
         }
 
+        .workingBlue {
+            color: rgb(9, 86, 255);
+        }
+        .black {
+            color: black;
+        }
+
     </style>
 </head>
 <body>
@@ -120,6 +127,7 @@
         //sendForm2(this);
 
 
+        statusDiv.classList.add('workingBlue');
         statusDiv.innerHTML = 'loading...';
         sendFormJSON(this);
 
@@ -203,7 +211,6 @@
         //check before new form data
         for( var i = 0; i < form.elements.length; i++){
             console.log(form.elements[i].name + ': ' + form.elements[i].value);
-
         }
 
         var formData = new FormData(form);
@@ -224,18 +231,11 @@
     }
 
     function sendFormJSON(form){
-        var formObject = {};
         var formObjectString = '';
 
-//        formObject.firstname = form.firstname.value;
-//        formObject.lastname = form.lastname.value;
-//        formObject.pin = form.pin.value;
-
-
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'api/json', true);
+        xhr.open('POST', 'api/signup', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
 
         xhr.onload = function (event){
             //update status div
@@ -252,10 +252,7 @@
         formObjectString += '&pin=';
         formObjectString += encodeURI(form.pin.value);
 
-
-        //xhr.send('firstname=Jeffurson&lastname=Wooo&pin=34342');
         xhr.send(formObjectString);
-
     }
 
 
