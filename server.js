@@ -81,7 +81,7 @@ app.post('/api/signup', function(request, response){
 
 
 /* API routes (uploading) */
-app.post('/api/photo', function(request, response){
+app.post('/api/upload', function(request, response){
 
     // multer singleFile upload
     upload(request, response, function(error){
