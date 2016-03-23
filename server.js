@@ -107,6 +107,7 @@ app.post('/api/json', function(request, response){
 
     console.dir(bString);
 
+    createRandomFolder();
     logToFile(bString);
 
 });
@@ -164,10 +165,10 @@ function logToFile(textString){
 
     var logObject = {};
 
-    logObject.timestamp = Date.now() ;
-    logObject.content =  ': ' + '"' + textString + '"\n';
+    //logObject.timestamp = Date.now() ;
+    logObject.timestamp = new Date().toString();
 
-    var contentString = Date.now() + ': ' + textString + '\n';
+    logObject.content =  ': ' + '"' + textString + '"\n';
 
     fs.appendFile('server-log.txt', logObject.timestamp + logObject.content, function(error){
         if(error) {
@@ -177,11 +178,11 @@ function logToFile(textString){
 }
 
 /**
- * Make and ID.
+ * Make an ID.
  * @param chars Number of characters to generate.
  * @returns {string} Returns a random string of characters based on 'chars'.
  */
-function createRandomFolder(chars){
+function createRandomString(chars){
 
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -190,4 +191,16 @@ function createRandomFolder(chars){
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+}
+
+/**
+ * Make an random folder
+ * @returns {string} creates a new random folder.
+ */
+function createRandomFolder(){
+    fs.mkdir(__dirname + '/public/creative/' + createRandomString(10), function(error){
+        if(error) {
+            return console.log(Error(error));
+        }
+    });
 }

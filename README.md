@@ -22,6 +22,7 @@ RnD for Helena's previewer
 - [Mongoose Quick Start](http://mongoosejs.com/docs/)
 - [Form EncType](http://www.w3schools.com/jsref/prop_form_enctype.asp)
 - [Body-Parser for Express](https://github.com/expressjs/body-parser)
+- [Node.JS: File System](http://www.tutorialspoint.com/nodejs/nodejs_file_system.htm)
 
 ### Technologies
 - [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
@@ -36,6 +37,7 @@ RnD for Helena's previewer
 - **form.elements[0].value**; Access your form element values on the front end with this. (AJAX)
 - **form.( variable name ).value**; Also works as well.
 - ENCODE your URIs before posting!
+- ** (number).toLocalString()** in Node.JS gives you numbers with commas.
 
 
 **Using Multer:<br>
