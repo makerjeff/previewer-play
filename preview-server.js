@@ -92,7 +92,7 @@ app.post('/api/upload', function(request, response){
         }
 
         response.type('text/html');
-        response.end('File is uploaded. ' + '<a href="/">Upload more!</a>');
+        response.end('File is uploaded. ' + '<a href="/upload.html">Upload more!</a>');
         console.log(request.body);
         console.log('file uploaded.');
     });

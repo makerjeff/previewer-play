@@ -82,6 +82,14 @@
             color: black;
         }
 
+        progress {
+            position: relative;
+            background-color: #f3f3f3;
+            border: 1px dashed black;
+            height: 30px;
+            border-radius: 9px;
+        }
+
     </style>
 </head>
 <body>
@@ -95,6 +103,8 @@
         <input id="file-id" type="file" name="uploadFile">
         <input id="submitButton" type="submit" name="submit" value="submitValue">
     </form>
+
+    <progress id="progress" value="0" max="100"></progress>
 
     <button id="testButton">test</button>
 </div>
@@ -113,6 +123,8 @@
     var statusDiv = document.getElementById('statusDiv');
     var myForm = document.getElementById('uploadForm');
     var testButton = document.getElementById('testButton');
+
+    var progressBar = document.getElementById('progress');
 
     var file = document.getElementById('file-id');
 
@@ -189,17 +201,18 @@
         //can xhr.open(<method>, <url>, async);
         xhr.open('POST', url, true);
 
-        xhr.onload = function(event){
-            console.log('file transfer started');
-        };
+        xhr.upload.addEventListener('load', function(event){
+            console.log('file transfer has started!');
+        });
 
-        xhr.onerror = function(error){
+        xhr.upload.addEventListener('error', function(event){
             console.log(Error('something horrible just happened!'));
-        };
+        });
 
-        xhr.onprogress = function(event) {
-            console.log('uploading...');
-        }
+        xhr.upload.addEventListener('progress', function(event){
+            console.log('uploading... ' + event.loaded.toString() + '/' + event.total.toString() + ' - ' + (event.loaded/event.total*100).toFixed(2) + '%');
+            progressBar.value = (event.loaded/event.total*100);
+        });
 
         xhr.send(file);
     }
