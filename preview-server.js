@@ -2,7 +2,7 @@
  * 180 Previewer (transporter)
  */
 
-/* MODULES */
+/* ============ MODULES ============ */
 var express = require('express');
 var multer = require('multer');
 var colors = require('colors');
@@ -10,11 +10,13 @@ var fileType = require('file-type');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
-/*GLOBALS*/
+var previewer = require('./previewer-module');
+
+/* ============ GLOBALS ============ */
 var done = false;
 
 
-/* INSTANCES */
+/* ============ INSTANCES ============ */
 var app = express();
 var storage = multer.diskStorage({
     destination: function(request, response, callback) {
@@ -27,10 +29,8 @@ var storage = multer.diskStorage({
 
 //Multer upload module
 var upload = multer({storage: storage}).single('uploadFile');
-//var jsonParser = bodyParser.json();
-//var urlencodedParser = bodyParser.urlencoded({extended: true });
 
-/* MIDDLEWARE */
+/* ============ MIDDLEWARE ============ */
 
 //server static files
 app.use(express.static(__dirname + "/public/"));
@@ -55,7 +55,7 @@ app.use(function(request, response, next){
     next();
 });
 
-/* ROUTES */
+/* ============ ROUTES ============ */
 
 //default route
 app.get('/', function(request, response){
@@ -63,24 +63,25 @@ app.get('/', function(request, response){
 });
 
 
-// FORM DATA SUBMISSION TEST2 (to debug file upload)
+/* Standard form POST route */
 app.post('/api/signup', function(request, response){
 
     var bString = '';
 
+    //request.body.<variable> comes across unresolved according to webstorm, but works.
     bString = request.body.firstname + ' ' + request.body.lastname + ' pin: ' + request.body.pin;
 
     console.dir(bString);
 
     //createRandomFolder();
-    logToFile(bString);
+    previewer.logToFile(bString);
 
     response.type('text/html');
     response.end(bString);
 });
 
 
-/* API routes (uploading) */
+/* AJAX file upload route */
 app.post('/api/upload', function(request, response){
 
     // multer singleFile upload
@@ -113,47 +114,4 @@ app.listen(3000, function(){
 //TODO auto-unzip
 
 
-// ===== HELPER FUNCTIONS =====
-function logToFile(textString){
-
-    var logObject = {};
-
-    //logObject.timestamp = Date.now() ;
-    logObject.timestamp = new Date().toString();
-
-    logObject.content =  ': ' + '"' + textString + '"\n';
-
-    fs.appendFile('server-log.txt', logObject.timestamp + logObject.content, function(error){
-        if(error) {
-            return console.log(Error(error));
-        }
-    });
-}
-
-/**
- * Make an ID.
- * @param chars Number of characters to generate.
- * @returns {string} Returns a random string of characters based on 'chars'.
- */
-function createRandomString(chars){
-
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < chars; i++ ){
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-}
-
-/**
- * Make an random folder
- * @returns {string} creates a new random folder.
- */
-function createRandomFolder(){
-    fs.mkdir(__dirname + '/public/creative/' + createRandomString(10), function(error){
-        if(error) {
-            return console.log(Error(error));
-        }
-    });
-}
+/* ============ HELPER FUNCTIONS ============ */

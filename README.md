@@ -46,6 +46,9 @@ app.use(multer({dest:'./uploads/'}).array(...)); <br>
 app.use(multer({dest:'./uploads/'}).fields(...)); <br>
 
 
+TODO: Animated SVG as progress!
+
+
 
 
 
