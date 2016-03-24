@@ -99,6 +99,7 @@ app.post('/api/upload', function(request, response){
     });
 });
 
+/* AJAX multiple file upload route */
 app.post('/api/multi', function(request, response){
 
     multi(request, response, function(error){
@@ -126,7 +127,6 @@ app.listen(3000, function(){
 
 
 //TODO create folderArray of existing folders
-//TODO create random string folder, if folder exists in folderArray, try again.
 //TODO auto-unzip
 
 

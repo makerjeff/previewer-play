@@ -134,13 +134,13 @@
         //event.preventDefault();
         console.log('Default prevented. Encoding type: ' + this.enctype);
 
-        uploadFiles('/api/multi', file.files[0]);
+        uploadFiles('/api/multi', file.files[0]);   //for some reason, pointing to the first file works...
 
     });
 
     //myFiles.files returns 'FileList'
     testButton.addEventListener('click', function(event){
-        console.log(file.files[0]);
+        console.log(file.files);
     });
 
 
