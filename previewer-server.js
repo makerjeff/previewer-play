@@ -112,8 +112,25 @@ app.post('/api/multi', function(request, response){
 
         console.log(request.files);
     });
-
 });
+
+
+/* AJAX multi-file upload with auto unzip and folder creation */
+// DEV
+app.post('/api/unzip', function(request, response){
+
+    multi(request, response, function(error){
+        if(error){
+            return response.end('error uploading files!');
+        }
+
+        response.type('text/html');
+        response.end('Files have been uploaded and unzipped to root/public/unzipped');
+    });
+});
+
+
+
 
 // basic 404 catch-all middleware
 app.get('*', function(request, response){
