@@ -29,6 +29,7 @@ var storage = multer.diskStorage({
 
 //Multer upload module
 var upload = multer({storage: storage}).single('uploadFile');
+var multi = multer({storage: storage}).array('uploadFiles');
 
 /* ============ MIDDLEWARE ============ */
 
@@ -81,7 +82,7 @@ app.post('/api/signup', function(request, response){
 });
 
 
-/* AJAX file upload route */
+/* AJAX single file upload route */
 app.post('/api/upload', function(request, response){
 
     // multer singleFile upload
@@ -93,9 +94,24 @@ app.post('/api/upload', function(request, response){
 
         response.type('text/html');
         response.end('File is uploaded. ' + '<a href="/upload.html">Upload more!</a>');
-        console.log(request.body);
+        //console.log(request.body);
         console.log('file uploaded.');
     });
+});
+
+app.post('/api/multi', function(request, response){
+
+    multi(request, response, function(error){
+        if(error){
+            return response.end('error uploading files!');
+        }
+
+        response.type('text/html');
+        response.end('Files have been uploaded. ' + '<a href="/multi-upload.html">Upload again! </a>');
+
+        console.log(request.files);
+    });
+
 });
 
 // basic 404 catch-all middleware
