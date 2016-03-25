@@ -116,7 +116,7 @@ app.post('/api/multi', function(request, response){
 
 
 /* AJAX multi-file upload with auto unzip and folder creation */
-// DEV
+// TODO dev
 app.post('/api/unzip', function(request, response){
 
     multi(request, response, function(error){
