@@ -9,12 +9,14 @@ var colors = require('colors');
 var fileType = require('file-type');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var mongoose = require('mongoose');
 
+// === custom modules ===
 var previewer = require('./previewer-module');
+var User = require('./models/user');
 
 /* ============ GLOBALS ============ */
 var done = false;
-
 
 /* ============ INSTANCES ============ */
 var app = express();
@@ -27,9 +29,12 @@ var storage = multer.diskStorage({
     }
 });
 
-//Multer upload module
+//== Multer upload module ==
 var upload = multer({storage: storage}).single('uploadFile');
 var multi = multer({storage: storage}).array('uploadFiles');
+
+// == mongoDB ==
+mongoose.connect('mongodb://localhost/mongerd');
 
 /* ============ MIDDLEWARE ============ */
 
@@ -127,6 +132,37 @@ app.post('/api/unzip', function(request, response){
         response.type('text/html');
         response.end('Files have been uploaded and unzipped to root/public/unzipped');
     });
+});
+
+// check to see if db is responding
+//default route
+app.get('/api/databasedebug/', function(request, response){
+
+    var chris = new User({
+        name: 'chris',
+        username: 'sevilayha',
+        password: 'password'
+    });
+
+    //dudify
+    chris.dudify(function(error, name){
+        if(error){
+            return console.log(Error(error));
+        } else {
+            console.log('adding ' + name);
+        }
+    });
+
+    chris.save(function(error){
+        if(error){
+            console.log(Error(error));
+        } else {
+            console.log('User saved');
+        }
+    });
+
+    response.type('text/html');
+    response.end('attempting to add a user');
 });
 
 
