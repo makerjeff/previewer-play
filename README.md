@@ -23,11 +23,13 @@ RnD for Helena's previewer
 - [Form EncType](http://www.w3schools.com/jsref/prop_form_enctype.asp)
 - [Body-Parser for Express](https://github.com/expressjs/body-parser)
 - [Node.JS: File System](http://www.tutorialspoint.com/nodejs/nodejs_file_system.htm)
-- [XHR.upload.onprogress](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest) **(NEW!)**
+- [XHR.upload.onprogress](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)
+- [Scotch.io: Using Mongoose.js in Node.js and MongoDB applications](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications) **(NEW!)**
 
 ### Technologies
 - [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
-- [Multer: File upload]
+- [Multer: File upload](https://www.npmjs.com/package/multer)
+- [bcrypt](https://www.npmjs.com/package/bcryptjs)
 
 ## Notes/Major Discoveries
 

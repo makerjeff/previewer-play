@@ -21,11 +21,24 @@ var userSchema = new Schema({
 });
 
 //create custom methods inside userSchema
-
 userSchema.methods.dudify = function() {
     this.name = this.name + '-dude';
     return this.name;
 };
+
+//create pre (runs before every 'action')
+userSchema.pre('save', function(next){
+    var currentDate = new Date();
+    this.updated_at = currentDate;
+
+    //if created_at doesn't exist, ad to that field
+    if(!this.created_at) {
+        this.created_at = currentDate;
+    }
+
+    next();
+});
+
 //create mongoose model
 var User = mongoose.model('User', userSchema);
 

@@ -165,6 +165,17 @@ app.get('/api/databasedebug/', function(request, response){
     response.end('attempting to add a user');
 });
 
+//custom query route
+//TODO custom get-route for querying DB
+// get for queries, post for updates
+
+app.get('/api/databasedebug/:user', function(request, response){
+    console.log(request.params.user);
+
+    response.type('text/html');
+    response.end('You are trying to find ' + request.params.user);
+});
+
 
 
 
