@@ -25,6 +25,7 @@ RnD for Helena's previewer
 - [Node.JS: File System](http://www.tutorialspoint.com/nodejs/nodejs_file_system.htm)
 - [XHR.upload.onprogress](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)
 - [Scotch.io: Using Mongoose.js in Node.js and MongoDB applications](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications) **(NEW!)**
+- [HTML5 File Drag and Drop] (http://www.sitepoint.com/html5-file-drag-and-drop/) **(NEW!)**
 
 ### Technologies
 - [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
