@@ -49,7 +49,9 @@
 
     <progress id="progress" value="0" max="100"></progress> <br/>
 
-    <button id="testButton">test</button>
+    <button id="formDataButton">formData upload</button>
+
+    <button id="testButton">file input check</button>
 </div>
 
 <!-- RESULTS HERE -->
@@ -63,32 +65,37 @@
 
 
 <script>
-    var statusDiv = document.getElementById('statusDiv');
-    var myForm = document.getElementById('uploadForm');
-    var testButton = document.getElementById('testButton');
+    var statusDiv = $gebi('statusDiv');
+    var myForm = $gebi('uploadForm');
+    var testButton = $gebi('testButton');
+    var formDataButton = $gebi('formDataButton');
+    var testDrop = $gebi('testDrop');
+    var progressBar = $gebi('progress');
 
-    var progressBar = document.getElementById('progress');
-
-    var file = document.getElementById('file-id');
+    var fileDiv = $gebi('file-id');
 
     //XHR version
     myForm.addEventListener('submit', function(event){
 
-        //event.preventDefault();
+        //TODO Make true AJAX uploading with no page refresh: NodeJS side fix required?
+        //event.preventDefault();   //preventing default seems to kill the file submission
         console.log('Default prevented. Encoding type: ' + this.enctype);
 
-        uploadFiles('/api/multi', file.files[0]);   //for some reason, pointing to the first file works...
+        uploadFiles('/api/multi', fileDiv.files[0]);   //for some reason, pointing to the first file works for multifiles...
     });
 
     //myFiles.files returns 'FileList'
     testButton.addEventListener('click', function(event){
-        console.log(file.files);
+        console.log(fileDiv.files);
     });
+
+
 
 
     //TODO programatically inject iframe with defined route (socket? or XHR?)
 
     //SCHEMA for DATAOBJECT
+    //TODO create this object on backend
     var dataObject = {
         title: 'Test Banner!',
         version: 'v001',
@@ -108,7 +115,7 @@
     }
 
 
-    // (dragDrop)
+    /* ========== (dragDrop) =========== */
     function InitFileDrag(){
         var fileselect = $gebi('file-id');
         var filedrag = $gebi('filedrag');
@@ -129,6 +136,7 @@
 
     //file drag hover (dragDrop)
     function FileDragHover(event){
+        //prevent default behavior: browser opening file
         event.stopPropagation();
         event.preventDefault();
 
@@ -143,12 +151,29 @@
         //fetch fileList object
         var files = event.target.files || event.dataTransfer.files;
         for (var i = 0, f; f = files[i]; i++){
-            ParseFile(f);
+            //ParseFile(f);
         }
+
+        AddToUpload(event, fileDiv);
+
+        //update drag window
+        //TODO REQUIRES FormData to work
+        var filedrag = $gebi('filedrag');
+        filedrag.innerHTML = files[0].name;
+
     }
     // (dragDrop)
     function ParseFile(file) {
         console.log(file.name + ', ' + file.type + ', ' + file.size);
+    }
+
+    //TODO (drag drop) (currently dbugging only)
+    function AddToUpload(evt, targetFileDiv){
+        var file = evt.target.files || evt.dataTransfer.files;
+        console.log(file);
+
+        //testing singular
+        targetFileDiv.files[0] = file[0];
     }
 
 
@@ -196,17 +221,36 @@
         xhr.upload.addEventListener('load', function(event){
             console.log('file transfer has started!');
         });
-
+        // error handler
         xhr.upload.addEventListener('error', function(event){
             console.log(Error('something horrible just happened!'));
         });
-
+        // progress handler
         xhr.upload.addEventListener('progress', function(event){
             console.log('uploading... ' + event.loaded.toString() + '/' + event.total.toString() + ' - ' + (event.loaded/event.total*100).toFixed(2) + '%');
             progressBar.value = (event.loaded/event.total*100);
         });
 
         xhr.send(file);
+    }
+
+    //TODO upload files using FormData
+    function FormDataUploadFile(url, file) {
+        var formData = new FormData();
+        formData.append(file.name, file);   //single file
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+
+        xhr.upload.addEventListener('error', function(event){
+            console.log(Error('something horrible just happened!'));
+        });
+
+        xhr.upload.addEventListener('progress', function(event){
+            console.log('uploading...' + event.loaded.toString() + '/' + event.total.toString() + ' - ' + (event.loaded/event.total*100).toFixed(2) + '%');
+        });
+
+        xhr.send(formData);
     }
 
     //helpers

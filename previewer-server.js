@@ -55,7 +55,6 @@ app.use(function(request, response, next) {
 });
 
 // = logs to node console with every transaction
-//TODO Make this log to local file.
 app.use(function(request, response, next){
     console.log('%s %s %s %s', request.method, request.url, request.path, colors.yellow(Date().toString()));
     next();
@@ -189,9 +188,9 @@ app.listen(3000, function(){
     console.log('Working on Port 3000'.blue);
 });
 
+//TODO auto-unzip
 
 //TODO create folderArray of existing folders
-//TODO auto-unzip
 
 
 /* ============ HELPER FUNCTIONS ============ */
