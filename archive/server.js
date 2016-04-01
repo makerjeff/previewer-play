@@ -84,26 +84,20 @@ app.post('/api/text', function(request, response){
 });
 
 // FORM DATA SUBMISSION TEST2 (to debug file upload)
-app.post('/api/formSubmit', function(request, response){
+app.post('/api/signup', function(request, response){
 
-    var contentString = '';
+    var bString = '';
 
-    //NOTES
+    bString = request.body.firstname + ' ' + request.body.lastname + ' pin: ' + request.body.pin;
 
-    contentString += '<h1>Server response: </h1>';
-    contentString += request.body.firstname;
-    contentString += ', ';
-    contentString += request.body.lastname;
-    contentString += '<br> Pin: ';
-    contentString += request.body.pin;
+
+    console.dir(bString);
+
+    //createRandomFolder();
+    logToFile(bString);
 
     response.type('text/html');
-    response.end(contentString + '<br>' + '<a href="/simpleform.html">submit again?</a>');
-
-    console.log('content:'.yellow + contentString);
-
-    logToFile(contentString);
-
+    response.end(bString);
 });
 
 
@@ -154,15 +148,15 @@ app.listen(3000, function(){
 //TODO auto-unzip
 
 
-// ===== HELPER =====
+// ===== HELPER FUNCTIONS =====
 function logToFile(textString){
 
     var logObject = {};
 
-    logObject.timestamp = Date.now() ;
-    logObject.content =  ': ' + '"' + textString + '"\n';
+    //logObject.timestamp = Date.now() ;
+    logObject.timestamp = new Date().toString();
 
-    var contentString = Date.now() + ': ' + textString + '\n';
+    logObject.content =  ': ' + '"' + textString + '"\n';
 
     fs.appendFile('server-log.txt', logObject.timestamp + logObject.content, function(error){
         if(error) {
@@ -172,11 +166,11 @@ function logToFile(textString){
 }
 
 /**
- * Make and ID.
+ * Make an ID.
  * @param chars Number of characters to generate.
  * @returns {string} Returns a random string of characters based on 'chars'.
  */
-function createRandomFolder(chars){
+function createRandomString(chars){
 
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -185,4 +179,16 @@ function createRandomFolder(chars){
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
+}
+
+/**
+ * Make an random folder
+ * @returns {string} creates a new random folder.
+ */
+function createRandomFolder(){
+    fs.mkdir(__dirname + '/public/creative/' + createRandomString(10), function(error){
+        if(error) {
+            return console.log(Error(error));
+        }
+    });
 }

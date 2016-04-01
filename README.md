@@ -22,10 +22,17 @@ RnD for Helena's previewer
 - [Mongoose Quick Start](http://mongoosejs.com/docs/)
 - [Form EncType](http://www.w3schools.com/jsref/prop_form_enctype.asp)
 - [Body-Parser for Express](https://github.com/expressjs/body-parser)
+- [Node.JS: File System](http://www.tutorialspoint.com/nodejs/nodejs_file_system.htm)
+- [XHR.upload.onprogress](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)
+- [Scotch.io: Using Mongoose.js in Node.js and MongoDB applications](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications) **(NEW!)**
+- [HTML5 File Drag and Drop] (http://www.sitepoint.com/html5-file-drag-and-drop/) **(NEW!)**
+- [File Upload with Express and Dropzone.js](http://www.sitepoint.com/file-upload-form-express-dropzone-js/?utm_source=sitepoint&utm_medium=relatedinline&utm_term=javascript&utm_campaign=relatedauthor) **(NEW!)**
+
 
 ### Technologies
 - [adm-zip: backend zip file handling](https://github.com/cthackers/adm-zip)
-- [Multer: File upload]
+- [Multer: File upload](https://www.npmjs.com/package/multer)
+- [bcrypt](https://www.npmjs.com/package/bcryptjs)
 
 ## Notes/Major Discoveries
 
@@ -33,11 +40,19 @@ RnD for Helena's previewer
 
 - **FormData() from the front end sends data as 'multipart/form-data', which bodyParser doesn't support. Use 'multer' for this.**
 
+- **form.elements[0].value**; Access your form element values on the front end with this. (AJAX)
+- **form.( variable name ).value**; Also works as well.
+- ENCODE your URIs before posting!
+- ** (number).toLocalString()** in Node.JS gives you numbers with commas.
+
 
 **Using Multer:<br>
 app.use(multer({dest:'./uploads/'}).single(...)); <br>
 app.use(multer({dest:'./uploads/'}).array(...)); <br>
 app.use(multer({dest:'./uploads/'}).fields(...)); <br>
+
+
+TODO: Animated SVG as progress!
 
 
 
