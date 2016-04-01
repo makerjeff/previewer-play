@@ -54,6 +54,8 @@ app.use(multer({dest:'./uploads/'}).fields(...)); <br>
 
 TODO: Animated SVG as progress!
 
+GIT DEBUG NOTE 2016.APR.01
+
 
 
 
